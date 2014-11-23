@@ -1,20 +1,23 @@
-.content-area {
-	float: right;
-	margin: 0 0 0 (-$size__site-sidebar);
-	width: $size__site-main;
-}
+.layout-2c-l {
 
-.site-main {
-	margin: 0 0 0 $size__site-sidebar;
-}
+	.content-area {
+		float: right;
+		margin: 0 0 0 (-$size__site-sidebar);
+		width: $size__site-main;
+	}
 
-.site-content .widget-area {
-	float: left;
-	overflow: hidden;
-	width: $size__site-sidebar;
-}
+	.site-main {
+		margin: 0 0 0 $size__site-sidebar;
+	}
 
-.site-footer {
-	clear: both;
-	width: $size__site-main;
+	.site-content .widget-area {
+		float: left;
+		overflow: hidden;
+		width: $size__site-sidebar;
+	}
+
+	.site-footer {
+		clear: both;
+		width: $size__site-main;
+	}
 }

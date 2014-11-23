@@ -10,13 +10,13 @@
 		margin: 0 0 0 $size__site-sidebar;
 	}
 
-	.site-content .widget-area {
+	.content .sidebar {
 		float: left;
 		overflow: hidden;
 		width: $size__site-sidebar;
 	}
 
-	.site-footer {
+	#footer {
 		clear: both;
 		width: $size__site-main;
 	}

@@ -591,12 +591,12 @@ a:active {
 .entry-content:after,
 .comment-content:before,
 .comment-content:after,
-.site-header:before,
-.site-header:after,
-.site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
+#header:before,
+#header:after,
+.content:before,
+.content:after,
+#footer:before,
+#footer:after {
 	content: "";
 	display: table;
 }
@@ -604,9 +604,9 @@ a:active {
 .clear:after,
 .entry-content:after,
 .comment-content:after,
-.site-header:after,
-.site-content:after,
-.site-footer:after {
+#header:after,
+.content:after,
+#footer:after {
 	clear: both;
 }
 
@@ -694,13 +694,13 @@ a:active {
 	margin: 0 25% 0 0;
 }
 
-.layout-2c-l .site-content .widget-area {
+.layout-2c-l .content .sidebar {
 	float: right;
 	overflow: hidden;
 	width: 25%;
 }
 
-.layout-2c-l .site-footer {
+.layout-2c-l #footer {
 	clear: both;
 	width: 100%;
 }
@@ -715,13 +715,13 @@ a:active {
 	margin: 0 0 0 25%;
 }
 
-.layout-2c-r  .site-content .widget-area {
+.layout-2c-r  .content .sidebar {
 	float: left;
 	overflow: hidden;
 	width: 25%;
 }
 
-.layout-2c-r  .site-footer {
+.layout-2c-r  #footer {
 	clear: both;
 	width: 100%;
 }
@@ -731,12 +731,12 @@ a:active {
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
-.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+.infinite-scroll.neverending #footer { /* Theme Footer (when set to scrolling) */
 	display: none;
 }
 
 /* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
-.infinity-end.neverending .site-footer {
+.infinity-end.neverending #footer {
 	display: block;
 }
 

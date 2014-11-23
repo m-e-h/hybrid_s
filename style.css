@@ -686,7 +686,7 @@ a:active {
 --------------------------------------------------------------*/
 .layout-2c-l .content-area {
 	float: left;
-	margin: 0 (-25%) 0 0;
+	margin: 0 -25% 0 0;
 	width: 100%;
 }
 
@@ -707,7 +707,7 @@ a:active {
 
 .layout-2c-r  .content-area {
 	float: right;
-	margin: 0 0 0 (-25%);
+	margin: 0 0 0 -25%;
 	width: 100%;
 }
 

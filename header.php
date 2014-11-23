@@ -23,11 +23,10 @@
 			<?php hybrid_site_description(); ?>
 		</div><!-- #branding -->
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'hybrid_s' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
+		<?php hybrid_get_menu( 'primary' ); // Loads the menu/primary.php template. ?>
+		
 	</header><!-- #header -->
 
 	<div <?php hybrid_attr( 'content' ); ?>>
+
   <?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>

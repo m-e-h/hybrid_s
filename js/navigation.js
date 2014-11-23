@@ -6,7 +6,7 @@
 ( function() {
 	var container, button, menu;
 
-	container = document.getElementById( 'site-navigation' );
+	container = document.getElementById( 'menu-primary' );
 	if ( ! container ) {
 		return;
 	}

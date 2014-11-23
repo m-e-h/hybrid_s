@@ -26,12 +26,12 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'content', get_post_format() );
+					hybrid_get_content_template(); // Loads the content/*.php template.
 				?>
 
 			<?php endwhile; ?>
 
-			<?php hybrid_s_paging_nav(); ?>
+			<?php hybrid_s_loop_nav(); ?>
 
 		<?php else : ?>
 

@@ -16,12 +16,12 @@
 <body <?php hybrid_attr( 'body' ); ?>>
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hybrid_s' ); ?></a>
-
+	
 	<header <?php hybrid_attr( 'header' ); ?>>
-        <div <?php hybrid_attr( 'branding' ); ?>>
-					<?php hybrid_site_title(); ?>
-					<?php hybrid_site_description(); ?>
-				</div><!-- #branding -->
+	        	<div <?php hybrid_attr( 'branding' ); ?>>
+			<?php hybrid_site_title(); ?>
+			<?php hybrid_site_description(); ?>
+		</div><!-- #branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'hybrid_s' ); ?></button>

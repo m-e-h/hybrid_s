@@ -682,6 +682,51 @@ a:active {
 }
 
 /*--------------------------------------------------------------
+10.4 Layouts
+--------------------------------------------------------------*/
+.layout-2c-l .content-area {
+	float: left;
+	margin: 0 (-25%) 0 0;
+	width: 100%;
+}
+
+.layout-2c-l .site-main {
+	margin: 0 25% 0 0;
+}
+
+.layout-2c-l .site-content .widget-area {
+	float: right;
+	overflow: hidden;
+	width: 25%;
+}
+
+.layout-2c-l .site-footer {
+	clear: both;
+	width: 100%;
+}
+
+.layout-2c-r  .content-area {
+	float: right;
+	margin: 0 0 0 (-25%);
+	width: 100%;
+}
+
+.layout-2c-r  .site-main {
+	margin: 0 0 0 25%;
+}
+
+.layout-2c-r  .site-content .widget-area {
+	float: left;
+	overflow: hidden;
+	width: 25%;
+}
+
+.layout-2c-r  .site-footer {
+	clear: both;
+	width: 100%;
+}
+
+/*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */

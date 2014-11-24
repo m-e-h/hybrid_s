@@ -12,9 +12,11 @@
 
 	<footer <?php hybrid_attr( 'footer' ); ?>>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'hybrid_s' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'hybrid_s' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'hybrid_s' ), 'hybrid_s', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
+        <?php printf(
+                /* Translators: 1 is current year, 2 is site name/link, 3 is WordPress name/link, and 4 is theme name/link. */
+                __( 'Copyright &#169; %1$s %2$s. Powered by %3$s and %4$s.', 'stargazer' ), 
+                date_i18n( 'Y' ), hybrid_get_site_link(), hybrid_get_wp_link(), hybrid_get_theme_link()
+            ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #footer -->
 </div><!-- #page -->

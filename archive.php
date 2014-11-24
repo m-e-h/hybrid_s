@@ -15,10 +15,10 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-
-			  <h1 <?php hybrid_attr( 'loop-title' ); ?>><?php hybrid_loop_title(); ?></h1>
-			  <div <?php hybrid_attr( 'loop-description' ); ?>><?php hybrid_loop_description(); ?></div>
-
+				<?php
+					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+				?>
 			</header><!-- .page-header -->
 
 			<?php /* Start the Loop */ ?>

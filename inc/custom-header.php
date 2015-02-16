@@ -58,8 +58,8 @@ function hybrid_s_header_style() {
 		// Has the text been hidden?
 		if ( 'blank' == $header_text_color ) :
 	?>
-		#site-title,
-		#site-description {
+		.site-title,
+		.site-description {
 			position: absolute;
 			clip: rect(1px, 1px, 1px, 1px);
 		}
@@ -67,8 +67,8 @@ function hybrid_s_header_style() {
 		// If the user has set a custom color for the text use that
 		else :
 	?>
-		#site-title a,
-		#site-description {
+		.site-title a,
+		.site-description {
 			color: #<?php echo esc_attr( $header_text_color ); ?>;
 		}
 	<?php endif; ?>

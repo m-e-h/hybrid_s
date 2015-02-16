@@ -7,26 +7,28 @@
  * @package hybrid_s
  */
 
-if ( ! function_exists( 'hybrid_s_paging_nav' ) ) :
+if ( ! function_exists( 'the_posts_navigation' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
+ *
+ * @todo Remove this function when WordPress 4.3 is released.
  */
-function hybrid_s_paging_nav() {
+function the_posts_navigation() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
 	}
 	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'hybrid_s' ); ?></h1>
+	<nav class="navigation posts-navigation" role="navigation">
+		<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'hybrid_s' ); ?></h2>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'hybrid_s' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'hybrid_s' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'hybrid_s' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'hybrid_s' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -35,11 +37,13 @@ function hybrid_s_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'hybrid_s_post_nav' ) ) :
+if ( ! function_exists( 'the_post_navigation' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
+ *
+ * @todo Remove this function when WordPress 4.3 is released.
  */
-function hybrid_s_post_nav() {
+function the_post_navigation() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -49,11 +53,11 @@ function hybrid_s_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'hybrid_s' ); ?></h1>
+		<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'hybrid_s' ); ?></h2>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'hybrid_s' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'hybrid_s' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', '%title' );
+				next_post_link( '<div class="nav-next">%link</div>', '%title' );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -147,24 +151,26 @@ function the_archive_title( $before = '', $after = '' ) {
 		$title = sprintf( __( 'Month: %s', 'hybrid_s' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'hybrid_s' ) ) );
 	} elseif ( is_day() ) {
 		$title = sprintf( __( 'Day: %s', 'hybrid_s' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'hybrid_s' ) ) );
-	} elseif ( is_tax( 'post_format', 'post-format-aside' ) ) {
-		$title = _x( 'Asides', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-		$title = _x( 'Galleries', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-		$title = _x( 'Images', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-		$title = _x( 'Videos', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-		$title = _x( 'Quotes', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-		$title = _x( 'Links', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-		$title = _x( 'Statuses', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-		$title = _x( 'Audio', 'post format archive title', 'hybrid_s' );
-	} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-		$title = _x( 'Chats', 'post format archive title', 'hybrid_s' );
+	} elseif ( is_tax( 'post_format' ) ) {
+		if ( is_tax( 'post_format', 'post-format-aside' ) ) {
+			$title = _x( 'Asides', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
+			$title = _x( 'Galleries', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
+			$title = _x( 'Images', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
+			$title = _x( 'Videos', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
+			$title = _x( 'Quotes', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
+			$title = _x( 'Links', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
+			$title = _x( 'Statuses', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
+			$title = _x( 'Audio', 'post format archive title', 'hybrid_s' );
+		} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
+			$title = _x( 'Chats', 'post format archive title', 'hybrid_s' );
+		}
 	} elseif ( is_post_type_archive() ) {
 		$title = sprintf( __( 'Archives: %s', 'hybrid_s' ), post_type_archive_title( '', false ) );
 	} elseif ( is_tax() ) {

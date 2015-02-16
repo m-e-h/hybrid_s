@@ -11,7 +11,7 @@
 		<h1 <?php hybrid_attr( 'entry-title' ); ?>><?php single_post_title(); ?></h1>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div <?php hybrid_attr( 'entry-content' ); ?>>
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(

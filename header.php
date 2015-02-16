@@ -6,7 +6,7 @@
  *
  * @package hybrid_s
  */
-?><!DOCTYPE html>
+?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
 
@@ -16,17 +16,15 @@
 <body <?php hybrid_attr( 'body' ); ?>>
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hybrid_s' ); ?></a>
-	
+
 	<header <?php hybrid_attr( 'header' ); ?>>
-	        	<div <?php hybrid_attr( 'branding' ); ?>>
+		<div <?php hybrid_attr( 'branding' ); ?>>
 			<?php hybrid_site_title(); ?>
 			<?php hybrid_site_description(); ?>
-		</div><!-- #branding -->
+		</div><!-- .site-branding -->
 
-		<?php hybrid_get_menu( 'primary' ); // Loads the menu/primary.php template. ?>
-		
-	</header><!-- #header -->
+		<?php hybrid_get_menu( 'primary' ); ?>
+	</header><!-- #masthead -->
 
-	<div <?php hybrid_attr( 'content' ); ?>>
-
-  <?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>
+	<div class="main-container">
+    <?php hybrid_get_menu( 'breadcrumbs' ); // Loads the menu/breadcrumbs.php template. ?>

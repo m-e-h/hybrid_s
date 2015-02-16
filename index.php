@@ -14,7 +14,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main <?php hybrid_attr( 'content' ); ?>>
 
 		<?php if ( have_posts() ) : ?>
 
@@ -26,12 +26,12 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'content', get_post_format() );
+					hybrid_get_content_template();
 				?>
 
 			<?php endwhile; ?>
 
-			<?php hybrid_s_loop_nav(); ?>
+			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>
 
@@ -42,5 +42,5 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
+<?php hybrid_get_sidebar( 'primary' ); // Loads the sidebar/primary.php template. ?>
 <?php get_footer(); ?>

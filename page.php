@@ -13,11 +13,11 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main <?php hybrid_attr( 'content' ); ?>>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'content', 'page' ); ?>
+				<?php hybrid_get_content_template(); ?>
 
 				<?php
 					// If comments are open or we have at least one comment, load up the comment template
@@ -31,5 +31,5 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
+<?php hybrid_get_sidebar( 'primary' ); // Loads the sidebar/primary.php template. ?>
 <?php get_footer(); ?>

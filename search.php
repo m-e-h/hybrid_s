@@ -8,7 +8,7 @@
 get_header(); ?>
 
 	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main <?php hybrid_attr( 'content' ); ?>>
 
 		<?php if ( have_posts() ) : ?>
 
@@ -30,7 +30,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php hybrid_s_paging_nav(); ?>
+			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>
 
@@ -41,5 +41,5 @@ get_header(); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php get_sidebar(); ?>
+<?php hybrid_get_sidebar( 'primary' ); // Loads the sidebar/primary.php template. ?>
 <?php get_footer(); ?>

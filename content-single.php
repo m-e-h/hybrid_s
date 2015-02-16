@@ -9,11 +9,11 @@
 		<h1 <?php hybrid_attr( 'entry-title' ); ?>><?php single_post_title(); ?></h1>
 
 		<div class="entry-meta">
-			<?php hybrid_s_byline(); ?>
+			<?php hybrid_s_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div <?php hybrid_attr( 'entry-content' ); ?>>
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
@@ -24,6 +24,6 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php hybrid_s_post_footer(); ?>
+		<?php hybrid_s_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

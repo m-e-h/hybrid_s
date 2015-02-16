@@ -8,7 +8,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main <?php hybrid_attr( 'content' ); ?>>
 
 			<section class="error-404 not-found">
 				<header class="page-header">

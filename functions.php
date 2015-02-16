@@ -4,20 +4,14 @@
  *
  * @package hybrid_s
  */
+ 
+/* Get the template directory and make sure it has a trailing slash. */
+$hybrid_base_dir = trailingslashit( get_template_directory() );
 
-/**
- * Get the template directory and make sure it has a trailing slash.
- */
-$hybrid_s_dir = trailingslashit( get_template_directory() );
+/* Load the Hybrid Core framework and theme files. */
+require_once( $hybrid_base_dir . 'library/hybrid.php'        );
 
-/**
- * Load the Hybrid Core framework and theme files.
- */
-require_once( $hybrid_s_dir . 'library/hybrid.php' );
-
-/**
- * Launch the Hybrid Core framework.
- */
+/* Launch the Hybrid Core framework. */
 new Hybrid();
 
 /**
@@ -37,13 +31,8 @@ if ( ! function_exists( 'hybrid_s_setup' ) ) :
  */
 function hybrid_s_setup() {
 
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on hybrid_s, use a find and replace
-	 * to change 'hybrid_s' to the name of your theme in all the template files
-	 */
-	load_theme_textdomain( 'hybrid_s', get_template_directory() . '/languages' );
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
 
 	/**
 	 * Theme layouts.
@@ -57,51 +46,24 @@ function hybrid_s_setup() {
 		),
 		array( 'default' => is_rtl() ? '2c-r' :'2c-l' )
 	);
-
-	/**
+	
+	/*
 	 * Enable custom template hierarchy.
 	 */
 	add_theme_support( 'hybrid-core-template-hierarchy' );
-
-	/**
+	
+	/*
 	 * The best thumbnail/image script ever.
 	 */
 	add_theme_support( 'get-the-image' );
-
-	/**
-	 * Breadcrumbs. Yay!
+	
+	/*
+	 * Breadcrumbs.
 	 */
 	add_theme_support( 'breadcrumb-trail' );
-
-	/**
-	 * Pagination.
-	 */
-	add_theme_support( 'loop-pagination' );
-
-	/**
-	 * Nicer [gallery] shortcode implementation.
-	 */
+	
+	/* Nicer [gallery] shortcode implementation. */
 	add_theme_support( 'cleaner-gallery' );
-
-	/**
-	 * Better captions for themes to style.
-	 */
-	add_theme_support( 'cleaner-caption' );
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	//add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'hybrid_s' ),
-	) );
 
 	/*
 	 * Enable support for Post Formats.
@@ -121,28 +83,9 @@ endif; // hybrid_s_setup
 add_action( 'after_setup_theme', 'hybrid_s_setup' );
 
 /**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function hybrid_s_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'hybrid_s' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-}
-add_action( 'widgets_init', 'hybrid_s_widgets_init' );
-
-/**
  * Enqueue scripts and styles.
  */
 function hybrid_s_scripts() {
-	wp_enqueue_style( 'hybrid_s-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'hybrid_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
@@ -163,11 +106,6 @@ add_action( 'wp_enqueue_scripts', 'hybrid_s_scripts' );
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * template tags Hybrid Core .
- */
-require get_template_directory() . '/inc/hc-template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.

@@ -11,13 +11,19 @@
 
 ?>
 
+		<?php hybrid_get_sidebar( 'primary' ); // sidebar/primary.php ?>
+
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<?php hybrid_get_sidebar( 'subsidiary' ); // sidebar/subsidiary.php template. ?>
+
+	<footer <?php hybrid_attr( 'footer' ); ?>>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'hybrid_s' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'hybrid_s' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'hybrid_s' ), 'hybrid_s', '<a href="https://github.com/m-e-h" rel="designer">Marty Helmick</a>' ); ?>
+			<?php printf(
+				// 1 is current year, 2 is site name/link, 3 is WordPress name/link, and 4 is theme name/link.
+				esc_html__( 'Copyright &#169; %1$s %2$s. Powered by %3$s and %4$s.', 'hybrid-base' ),
+				date_i18n( 'Y' ), hybrid_get_site_link(), hybrid_get_wp_link(), hybrid_get_theme_link()
+			); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

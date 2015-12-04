@@ -521,31 +521,31 @@ a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.main-navigation {
+.menu-primary {
 	clear: both;
 	display: block;
 	float: left;
 	width: 100%;
 }
 
-.main-navigation ul {
+.menu-primary ul {
 	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 }
 
-.main-navigation li {
+.menu-primary li {
 	float: left;
 	position: relative;
 }
 
-.main-navigation a {
+.menu-primary a {
 	display: block;
 	text-decoration: none;
 }
 
-.main-navigation ul ul {
+.menu-primary ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
@@ -554,50 +554,50 @@ a:active {
 	z-index: 99999;
 }
 
-.main-navigation ul ul ul {
+.menu-primary ul ul ul {
 	left: -999em;
 	top: 0;
 }
 
-.main-navigation ul ul a {
+.menu-primary ul ul a {
 	width: 200px;
 }
 
-.main-navigation ul ul li {
+.menu-primary ul ul li {
 
 }
 
-.main-navigation li:hover > a,
-.main-navigation li.focus > a {
+.menu-primary li:hover > a,
+.menu-primary li.focus > a {
 }
 
-.main-navigation ul ul :hover > a,
-.main-navigation ul ul .focus > a {
+.menu-primary ul ul :hover > a,
+.menu-primary ul ul .focus > a {
 }
 
-.main-navigation ul ul a:hover,
-.main-navigation ul ul a.focus {
+.menu-primary ul ul a:hover,
+.menu-primary ul ul a.focus {
 }
 
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
+.menu-primary ul li:hover > ul,
+.menu-primary ul li.focus > ul {
 	left: auto;
 }
 
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
+.menu-primary ul ul li:hover > ul,
+.menu-primary ul ul li.focus > ul {
 	left: 100%;
 }
 
-.main-navigation .current_page_item > a,
-.main-navigation .current-menu-item > a,
-.main-navigation .current_page_ancestor > a,
-.main-navigation .current-menu-ancestor > a {
+.menu-primary .current_page_item > a,
+.menu-primary .current-menu-item > a,
+.menu-primary .current_page_ancestor > a,
+.menu-primary .current-menu-ancestor > a {
 }
 
 /* Small menu. */
 .menu-toggle,
-.main-navigation.toggled ul {
+.menu-primary.toggled ul {
 	display: block;
 }
 
@@ -605,14 +605,14 @@ a:active {
 	.menu-toggle {
 		display: none;
 	}
-	.main-navigation ul {
+	.menu-primary ul {
 		display: block;
 	}
 }
 
-.site-main .comment-navigation,
-.site-main .posts-navigation,
-.site-main .post-navigation {
+.content .comment-navigation,
+.content .posts-navigation,
+.content .post-navigation {
 	margin: 0 0 1.5em;
 	overflow: hidden;
 }
@@ -702,8 +702,8 @@ a:active {
 .comment-content:after,
 .site-header:before,
 .site-header:after,
-.site-content:before,
-.site-content:after,
+.content-layout:before,
+.content-layout:after,
 .site-footer:before,
 .site-footer:after {
 	content: "";
@@ -715,7 +715,7 @@ a:active {
 .entry-content:after,
 .comment-content:after,
 .site-header:after,
-.site-content:after,
+.content-layout:after,
 .site-footer:after {
 	clear: both;
 }
@@ -747,11 +747,11 @@ a:active {
 }
 
 .byline,
-.updated:not(.published) {
+.updated:not(.entry-published) {
 	display: none;
 }
 
-.single .byline,
+.singlular .byline,
 .group-blog .byline {
 	display: inline;
 }

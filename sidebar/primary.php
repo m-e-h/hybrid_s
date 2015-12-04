@@ -5,7 +5,7 @@
  * @package hybrid_s
  */
 
-if ( '1c' == get_theme_mod( 'theme_layout' ) || ! is_active_sidebar( 'primary' ) ) {
+if ( ! is_active_sidebar( 'primary' ) ) {
 	return;
 }
 ?>

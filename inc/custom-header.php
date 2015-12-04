@@ -1,16 +1,16 @@
 <?php
 /**
- * Sample implementation of the Custom Header feature
- * http://codex.wordpress.org/Custom_Headers
+ * Sample implementation of the Custom Header feature.
  *
  * You can add an optional custom header image to header.php like so ...
-
+ *
 	<?php if ( get_header_image() ) : ?>
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 		<img src="<?php header_image(); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="">
 	</a>
 	<?php endif; // End header image check. ?>
-
+ *
+ * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
  * @package hybrid_s
  */
@@ -19,8 +19,6 @@
  * Set up the WordPress core custom header feature.
  *
  * @uses hybrid_s_header_style()
- * @uses hybrid_s_admin_header_style()
- * @uses hybrid_s_admin_header_image()
  */
 function hybrid_s_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'hybrid_s_custom_header_args', array(
@@ -30,8 +28,6 @@ function hybrid_s_custom_header_setup() {
 		'height'                 => 250,
 		'flex-height'            => true,
 		'wp-head-callback'       => 'hybrid_s_header_style',
-		'admin-head-callback'    => 'hybrid_s_admin_header_style',
-		'admin-preview-callback' => 'hybrid_s_admin_header_image',
 	) ) );
 }
 add_action( 'after_setup_theme', 'hybrid_s_custom_header_setup' );
@@ -46,8 +42,8 @@ function hybrid_s_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
-	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value
-	if ( HEADER_TEXTCOLOR == $header_text_color ) {
+	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value.
+	if ( HEADER_TEXTCOLOR === $header_text_color ) {
 		return;
 	}
 
@@ -56,7 +52,7 @@ function hybrid_s_header_style() {
 	<style type="text/css">
 	<?php
 		// Has the text been hidden?
-		if ( 'blank' == $header_text_color ) :
+		if ( ! display_header_text() ) :
 	?>
 		.site-title,
 		.site-description {
@@ -64,7 +60,7 @@ function hybrid_s_header_style() {
 			clip: rect(1px, 1px, 1px, 1px);
 		}
 	<?php
-		// If the user has set a custom color for the text use that
+		// If the user has set a custom color for the text use that.
 		else :
 	?>
 		.site-title a,
@@ -76,51 +72,3 @@ function hybrid_s_header_style() {
 	<?php
 }
 endif; // hybrid_s_header_style
-
-if ( ! function_exists( 'hybrid_s_admin_header_style' ) ) :
-/**
- * Styles the header image displayed on the Appearance > Header admin panel.
- *
- * @see hybrid_s_custom_header_setup().
- */
-function hybrid_s_admin_header_style() {
-?>
-	<style type="text/css">
-		.appearance_page_custom-header #headimg {
-			border: none;
-		}
-		#headimg h1,
-		#desc {
-		}
-		#headimg h1 {
-		}
-		#headimg h1 a {
-		}
-		#desc {
-		}
-		#headimg img {
-		}
-	</style>
-<?php
-}
-endif; // hybrid_s_admin_header_style
-
-if ( ! function_exists( 'hybrid_s_admin_header_image' ) ) :
-/**
- * Custom header image markup displayed on the Appearance > Header admin panel.
- *
- * @see hybrid_s_custom_header_setup().
- */
-function hybrid_s_admin_header_image() {
-	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
-?>
-	<div id="headimg">
-		<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<div class="displaying-header-text" id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
-		<?php if ( get_header_image() ) : ?>
-		<img src="<?php header_image(); ?>" alt="">
-		<?php endif; ?>
-	</div>
-<?php
-}
-endif; // hybrid_s_admin_header_image

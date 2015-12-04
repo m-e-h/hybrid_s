@@ -1,25 +1,11 @@
 <?php
 /**
- * hybrid_s functions and definitions
+ * hybrid_s functions and definitions.
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package hybrid_s
  */
- 
-/* Get the template directory and make sure it has a trailing slash. */
-$hybrid_base_dir = trailingslashit( get_template_directory() );
-
-/* Load the Hybrid Core framework and theme files. */
-require_once( $hybrid_base_dir . 'library/hybrid.php'        );
-
-/* Launch the Hybrid Core framework. */
-new Hybrid();
-
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
-}
 
 if ( ! function_exists( 'hybrid_s_setup' ) ) :
 /**
@@ -30,47 +16,59 @@ if ( ! function_exists( 'hybrid_s_setup' ) ) :
  * as indicating support for post thumbnails.
  */
 function hybrid_s_setup() {
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on hybrid_s, use a find and replace
+	 * to change 'hybrid_s' to the name of your theme in all the template files.
+	 */
+	load_theme_textdomain( 'hybrid_s', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
-	/**
-	 * Theme layouts.
-	 */
-	add_theme_support(
-		'theme-layouts',
-		array(
-			'1c'        => __( '1 Column',                     'hybrid_s' ),
-			'2c-l'      => __( '2 Columns: Content / Sidebar', 'hybrid_s' ),
-			'2c-r'      => __( '2 Columns: Sidebar / Content', 'hybrid_s' )
-		),
-		array( 'default' => is_rtl() ? '2c-r' :'2c-l' )
-	);
-	
 	/*
-	 * Enable custom template hierarchy.
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
 	 */
-	add_theme_support( 'hybrid-core-template-hierarchy' );
-	
+	add_theme_support( 'title-tag' );
+
 	/*
-	 * The best thumbnail/image script ever.
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
-	add_theme_support( 'get-the-image' );
-	
+	add_theme_support( 'post-thumbnails' );
+
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menus( array(
+		'primary' => esc_html__( 'Primary', 'hybrid_s' ),
+	) );
+
 	/*
-	 * Breadcrumbs.
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
 	 */
-	add_theme_support( 'breadcrumb-trail' );
-	
-	/* Nicer [gallery] shortcode implementation. */
-	add_theme_support( 'cleaner-gallery' );
+	add_theme_support( 'html5', array(
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
 
 	/*
 	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
+	 * See https://developer.wordpress.org/themes/functionality/post-formats/
 	 */
 	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link',
+		'aside',
+		'image',
+		'video',
+		'quote',
+		'link',
 	) );
 
 	// Set up the WordPress core custom background feature.
@@ -83,9 +81,40 @@ endif; // hybrid_s_setup
 add_action( 'after_setup_theme', 'hybrid_s_setup' );
 
 /**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function hybrid_s_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'hybrid_s_content_width', 640 );
+}
+add_action( 'after_setup_theme', 'hybrid_s_content_width', 0 );
+
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function hybrid_s_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'hybrid_s' ),
+		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'hybrid_s_widgets_init' );
+
+/**
  * Enqueue scripts and styles.
  */
 function hybrid_s_scripts() {
+	wp_enqueue_style( 'hybrid_s-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'hybrid_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
@@ -100,7 +129,7 @@ add_action( 'wp_enqueue_scripts', 'hybrid_s_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.

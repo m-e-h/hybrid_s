@@ -1,6 +1,6 @@
 <?php
 /**
- * hybrid_s Theme Customizer
+ * hybrid_s Theme Customizer.
  *
  * @package hybrid_s
  */

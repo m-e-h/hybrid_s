@@ -11,7 +11,7 @@
 $hybrid_s_dir = trailingslashit( get_template_directory() );
 
 // Load the Hybrid Core framework.
-require_once( $hybrid_s_dir . 'library/hybrid.php'        );
+require_once( $hybrid_s_dir . 'library/hybrid.php' );
 
 // Launch the Hybrid Core framework.
 new Hybrid();
@@ -74,6 +74,24 @@ endif; // hybrid_s_setup
 add_action( 'after_setup_theme', 'hybrid_s_setup' );
 
 /**
+ * Register custom layouts.
+ */
+function hybrid_s_register_layouts() {
+
+    hybrid_register_layout( '1c', array(
+        'label' => esc_html__( '1 Col', 'hybrid_s' ),
+        'image' => '%s/images/layouts/1c.svg'
+    ) );
+    hybrid_register_layout( '2c-l', array(
+        'label' => esc_html__( '2 Col: Content/Sidebar', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-l.svg'
+    ) );
+    hybrid_register_layout( '2c-r', array(
+        'label' => esc_html__( '2 Col: Sidebar/Content', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-r.svg'
+    ) );
+}
+add_action( 'hybrid_register_layouts', 'hybrid_s_register_layouts' );
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -120,6 +138,15 @@ function hybrid_s_scripts() {
 add_action( 'wp_enqueue_scripts', 'hybrid_s_scripts' );
 
 /**
+ * Registers custom image sizes for the theme.
+ */
+function hybrid_s_register_image_sizes() {
+
+    //set_post_thumbnail_size( 150, 150, true );
+}
+add_action( 'init', 'hybrid_s_register_image_sizes', 5 );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
@@ -128,11 +155,6 @@ require get_template_directory() . '/inc/custom-header.php';
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.

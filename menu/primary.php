@@ -12,7 +12,7 @@
 				'menu_id'         => 'menu-primary-items',
 				'menu_class'      => 'menu-items nav-menu',
 				'fallback_cb'     => '',
-				'items_wrap'      => '<div class="menu-main-container"><ul id="%s" class="%s">%s</ul></div>'
+				'items_wrap'      => '<div class="menu-main-container"><ul id="%s" class="%s">%s</ul></div>',
 			)
 		); ?>
 

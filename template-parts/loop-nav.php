@@ -9,8 +9,8 @@
 
 	<?php the_posts_pagination(
 		array(
-			'prev_text' => esc_html_x( '&larr; Previous', 'posts navigation', 'hybrid_s' ), 
-			'next_text' => esc_html_x( 'Next &rarr;',     'posts navigation', 'hybrid_s' )
+			'prev_text' => esc_html_x( '&larr; Previous', 'posts navigation', 'hybrid_s' ),
+			'next_text' => esc_html_x( 'Next &rarr;',     'posts navigation', 'hybrid_s' ),
 		)
 	); ?>
 

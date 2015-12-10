@@ -11,7 +11,7 @@
 $hybrid_s_dir = trailingslashit( get_template_directory() );
 
 // Load the Hybrid Core framework.
-require_once( $hybrid_s_dir . 'library/hybrid.php' );
+require_once $hybrid_s_dir . 'library/hybrid.php';
 
 // Launch the Hybrid Core framework.
 new Hybrid();
@@ -27,7 +27,7 @@ if ( ! function_exists( 'hybrid_s_setup' ) ) :
 function hybrid_s_setup() {
 
 	// Theme layouts.
-	add_theme_support( 'theme-layouts', array( 'default' => is_rtl() ? '2c-r' :'2c-l' ) );
+	add_theme_support( 'theme-layouts', array( 'default' => is_rtl() ? '2c-r' : '2c-l' ) );
 
 	// Enable custom template hierarchy.
 	add_theme_support( 'hybrid-core-template-hierarchy' );
@@ -80,13 +80,13 @@ function hybrid_s_register_layouts() {
 
     hybrid_register_layout( '1c', array(
         'label' => esc_html__( '1 Col', 'hybrid_s' ),
-        'image' => '%s/images/layouts/1c.svg'
+        'image' => '%s/images/layouts/1c.svg',
     ) );
     hybrid_register_layout( '2c-l', array(
-        'label' => esc_html__( '2 Col: Content/Sidebar', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-l.svg'
+        'label' => esc_html__( '2 Col: Content/Sidebar', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-l.svg',
     ) );
     hybrid_register_layout( '2c-r', array(
-        'label' => esc_html__( '2 Col: Sidebar/Content', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-r.svg'
+        'label' => esc_html__( '2 Col: Sidebar/Content', 'hybrid_s' ), 'image' => '%s/images/layouts/2c-r.svg',
     ) );
 }
 add_action( 'hybrid_register_layouts', 'hybrid_s_register_layouts' );

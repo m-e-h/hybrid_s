@@ -1,0 +1,13 @@
+.DS_Store
+
+# Sass cache
+/.sass-cache
+
+# Development files
+/node_modules
+
+# Generated theme files
+.tmp
+*.map
+*.lock
+vendor
